@@ -1,9 +1,10 @@
 
 ## Some usefil git commands:
 
-# Git workflow is different than the svn/cvs one: 
+## Git workflow is different than the svn/cvs one: 
 
  * add a file to git:
+
    git add <FILE>  
 
  * show the status of a file 
