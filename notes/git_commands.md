@@ -1,8 +1,8 @@
 
 ## Some usefil git commands:
 
-## Git workflow is different than the svn/cvs one: 
-
+### Git workflow is different than the svn/cvs one: 
+***
  * add a file to git:  
 
    git add <FILE>  
@@ -22,6 +22,6 @@
  * **avoid** to always type your password:   
    GitHub's help also suggests that if you're on Mac OS and used homebrew to install git, you can use the native Mac OS keystore with:  
 
-   git config --global credential.helper osxkeychain 
+     git config --global credential.helper osxkeychain 
 
 
