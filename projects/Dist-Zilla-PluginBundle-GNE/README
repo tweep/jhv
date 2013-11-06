@@ -1,0 +1,89 @@
+NAME
+    Dist::Zilla::PluginBundle::GNE - Build the way we do at Genentech.
+
+VERSION
+    version 2.112940
+
+DESCRIPTION
+    This bundle is meant to do just about everything needed for building a
+    GPAN distribution the way that we do at Genentech.
+
+    It includes the following plugins, generally with their default
+    configuration. Some plugins have specific attributes preset (documented
+    below) and some can have particular attributes overridden as described.
+    If you have to do something fancier, you'd better already know how to do
+    it....
+
+    By default the bundle releases using Subversion::ReleaseDist and
+    Pinto::Add. You change that using the bundle's releaser argument, e.g.
+
+      [@GNE]
+      releaser = FakeRelease
+
+    AutoVersion
+        You can set Autoversion's major number by setting this bundle's
+        autoversion_major parameter, e.g.
+
+          [@GNE]
+          autoversion_major = 42
+
+    GatherDir
+    PruneCruft
+    ManifestSkip
+    NextRelease
+    PkgVersion
+    PodWeaver
+    License
+    ReadmeFromPod
+    Test::Compile
+        With: fake_home => 1
+
+    MetaTests
+    PodSyntaxTests
+    PodCoverageTests
+    Test::Version
+    AutoPrereqs
+    Prereqs
+    MetaNoIndex
+        With: directory => ['t','xt']
+
+    MetaProvides::Package
+        With: meta_noindex => 1
+
+    MetaYAML
+    MetaJSON
+    ExecDir
+    ShareDir
+    ModuleBuild
+    InstallGuide
+    Manifest
+    CheckExtraTests
+    TestRelease
+    Subversion::CommitCheck
+    ConfirmRelease
+    Pinto::Add
+        You can set Pinto::Add's repos attribute/configuration parameterby
+        setting this bundle's pinto_repository parameter, e.g.
+
+          [@GNE]
+          pinto_repository = "http://gpan.foo.com:4242"
+
+        The default value is http://gpan.gene.com:3000'.
+
+    Subversion::ReleaseDist
+    Subversion::CommitChanges'
+    Subversion::Tag'
+
+METHODS
+  configure
+AUTHOR
+    George Hartzell
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Genentech.
+
+    This is unreleased software and should not be distributed outside of
+    Genentech.
+
+    All rights reserved.
+
