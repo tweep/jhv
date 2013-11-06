@@ -8,9 +8,9 @@ use Log::Log4perl qw(:easy);
 use Exporter;
 use JSON;
 use LWP::Simple;
+use Module::Load;
 
 use vars qw(@ISA @EXPORT);
-
 @ISA    = qw(Exporter);
 @EXPORT = qw(
   read_json_file
@@ -31,11 +31,14 @@ Exceptions :
 =cut
 
 sub create_default_config_section_obj {
-    my ( $module, $config ) = @_;
+    my ( $module_name, $config ) = @_;
+
+    load $module_name;    # load Project::Registry::Manager::Config::Database
 
     if ( exists $config->{DEFAULT} ) {
-        return $module->new( $config->{DEFAULT} );
+        return $module_name->new( $config->{DEFAULT} );
     }
+    return $module_name->new();
 }
 
 

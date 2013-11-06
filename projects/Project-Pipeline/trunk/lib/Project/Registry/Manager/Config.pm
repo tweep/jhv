@@ -24,9 +24,13 @@ otherwise, throw.
 package Project::Registry::Manager::Config;
 
 use Moose;
+use Project::Registry::Utils::Tools; # create_default_config_section_obj
 with 'Project::Registry::Role::Config';
 
+
+#
 # We use a role here - we can overwrite the _build methods in the subclasses.
+#
 
 sub _build_species{
     return "Homo sapiens";

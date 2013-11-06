@@ -16,11 +16,13 @@ use JSON;
 
 my $tmp = {
     "Project::Registry::Manager::Config::Database" => {
-        DEFAULT => {
-            "host" => "json_test01",
-            "user" => "json_myuser",
-            "pass" => "json_password",
-            "port" => "json_9306",
+        DEFAULT => { 
+        # Use the defaults from Project::Registry::Manager::Config::Database, 
+        # which defines host, user, pass, port.
+        #    "host" => "json_test01",
+        #    "user" => "json_myuser",
+        #    "pass" => "json_password",
+        #    "port" => "json_9306",
         },
         dataset => {
             "cgi_wgs" => {
