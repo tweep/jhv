@@ -42,23 +42,18 @@ has 'default_class'      => (
                               #isa => 'Project::Pipeline::Config' , 
                               isa => 'Any', 
                               required => 0,
-   #                               handles => { 
-   #                                            bla => "vp_variation_db", 
-   #                                          },
-                               trigger => \&set_all_defaults, 
+                              #trigger => \&set_all_defaults, 
                             );
-
 
 
 sub set_all_defaults {
       my ( $self, $passed_val, $previous_val) = @_;
 
-      my $meta = $passed_val->meta();  
+      my $meta = $passed_val->meta();
 
-      for my $attr ( $meta->get_all_attributes ) { 
+      for my $attr ( $meta->get_all_attributes ) {
         my $attribute_name = $attr->name();
-        print "Entry.pm: Setting defaults: " , $attr->name, " ==> ", $passed_val->$attribute_name, "\n"; 
-        
+        print "Entry.pm: Setting defaults: " , $attr->name, " ==> ", $passed_val->$attribute_name, "\n";
       }
 }
 
@@ -66,11 +61,11 @@ sub set_all_defaults {
 # Supply default values which over-rides the defaults from the base class 
 
 sub _build_vp_variation_db {
-    return "ENTRY VPP init value";
+    return "ENTRY_VPP_INIT_VALUE";
 }
 
 sub _build_etl_db_name {
-    return "ENTRY ETL init value";
+    return "ENTRY_ETL_INIT_VALUE";
 }
 
 

@@ -1,5 +1,5 @@
 
-package Project::Pipeline::Role::Config;
+package Project::Pipeline::Role::Manager;
 
 use Moose::Role;
 use namespace::autoclean;
