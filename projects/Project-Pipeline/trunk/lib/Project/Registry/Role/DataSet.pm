@@ -1,5 +1,5 @@
 
-package Project::Registry::Role::DataSet;
+package Project::Registry::Role::Dataset;
 
 use Moose::Role;
 use namespace::autoclean;
@@ -65,6 +65,8 @@ has 'variant_caller' => (
     isa      => 'Str',
     required => 0,
 );
+
+has 'merge_set_name' => ( is => 'rw', isa => 'Str', required => 0 );
 
 1;
 

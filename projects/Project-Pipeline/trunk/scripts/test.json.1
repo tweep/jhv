@@ -1,0 +1,51 @@
+{
+   "Project::Registry::Manager::Config::Dataset" : {
+      "dataset" : {
+         "cgp3" : {
+            "variant_caller" : "gneCaller.1",
+            "vp_variation_db" : "vogelj4_evar_2013_03_03_cgp3",
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp3_etl",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_06_24_cgp3/json_strings/json_reformat.txt"
+         },
+         "cgp4" : {
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp4_etl",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_09_01_cgp4/json_strings/json_vcf_file_loc_reformat.txt",
+            "variant_caller" : "gGATK",
+            "vp_variation_db" : "vogelj4_evar_2013_09_01_cgp4",
+            "dump_merge_info" : {
+               "merge_set_name" : "cgp",
+               "annotate_xml" : 0,
+               "upload_to_solr" : 0,
+               "dump_to_xml" : 0,
+               "merge_data" : 1
+            }
+         }
+      },
+      "default" : {
+         "ensembl_cvs_root_dir" : "OK_ENS_CVS_",
+         "base_dir" : "OO_json_base_dir"
+      }
+   },
+   "Project::Registry::Manager::Config::Database" : {
+      "dataset" : {
+         "cgi_wgs" : {
+            "port" : "SPECIAL_9306",
+            "host" : "SPECIAL_test01",
+            "user" : "SPECIAL_myuser",
+            "pass" : "SPECIAL_password",
+            "dbname" : "SPECIAL_my_db_name",
+            "group" : "SPECIAL_group"
+         },
+         "tcga_07" : {
+            "group" : "TCGA_group"
+         }
+      },
+      "default" : {
+         "user" : "json_myuser",
+         "port" : "json_9306",
+         "host" : "json_test01",
+         "pass" : "json_password"
+      }
+   }
+}
+

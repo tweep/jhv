@@ -31,7 +31,7 @@ throw.
     );
 
   If a value is not set / supplied, it's default value (see subroutines below) are used.
-  All attributes are defined in the Role Project::Registry::Role::DataSet.
+  All attributes are defined in the Role Project::Registry::Role::Dataset.
  
   $entry->vp_variation_db("abc"); 
   $entry->etl_db_name("etl_db_name");
@@ -46,16 +46,11 @@ use Class::MOP::Class;
 use File::Spec::Functions;
 
 extends 'Project::Registry::Manager::Config';
-with 'Project::Registry::Role::DataSet', 'Project::Registry::Role::Config';
+with 'Project::Registry::Role::Dataset', 'Project::Registry::Role::Config';
 
-has 'default_class' => (
-    is       => 'rw',
-    isa      => 'Project::Registry::Manager::Config',
-    required => 0,
-    trigger  => \&set_all_defaults,
-);
-
-# Supply default values which over-rides the defaults from the base class
+#
+# Supply default values for initialization
+#
 
 sub _build_base_dir {
     return "_default_base_dir";
@@ -72,20 +67,6 @@ sub _build_ensembl_cvs_root_dir { return "_default_ensembl_cvs_root_dir" }
 sub _build_vp_variation_db      { return "_default_vp_variation_db" }
 sub _build_etl_db_name          { return "_default_etl_db_name" }
 
-
-
-sub set_all_defaults {
-    my ( $self, $passed_val, $previous_val ) = @_;
-
-    # Get the name of all attributes of the Class
-    my $meta = $passed_val->meta();
-
-    for my $attr ( $meta->get_all_attributes ) {
-        my $attribute_name = $attr->name();
-        my $default_value = $passed_val->$attribute_name();
-        $self->attribute_name($default_value);
-    }
-}
 
 __PACKAGE__->meta->make_immutable;
 

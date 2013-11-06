@@ -1,0 +1,103 @@
+{
+   "Project::Registry::Manager::Config::Dataset" : {
+      "dataset" : {
+         "cgp4" : {
+            "variant_caller" : "gGATK",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_09_01_cgp4/json_strings/json_vcf_file_loc_reformat.txt",
+            "vp_variation_db" : "vogelj4_evar_2013_09_01_cgp4",
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp4_etl",
+            "dump_merge_info" : {
+               "upload_to_solr" : 0,
+               "merge_set_name" : "cgp",
+               "merge_data" : 1,
+               "annotate_xml" : 0,
+               "dump_to_xml" : 0
+            }
+         },
+         "cgp3" : {
+            "variant_caller" : "gneCaller.1",
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp3_etl",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_06_24_cgp3/json_strings/json_reformat.txt",
+            "vp_variation_db" : "vogelj4_evar_2013_03_03_cgp3"
+         }
+      },
+      "default" : {
+         "base_dir" : "OO_json_base_dir",
+         "ensembl_cvs_root_dir" : "OK_ENS_CVS_"
+      }
+   },
+   "Project::Registry::Manager::Config::Database" : {
+      "dataset" : {
+         "tcga_07" : {
+            "group" : "TCGA_group"
+         },
+         "cgi_wgs" : {
+            "pass" : "SPECIAL_password",
+            "user" : "SPECIAL_myuser",
+            "host" : "SPECIAL_test01",
+            "port" : "SPECIAL_9306",
+            "dbname" : "SPECIAL_my_db_name",
+            "group" : "SPECIAL_group"
+         }
+      },
+      "default" : {
+         "user" : "json_myuser",
+         "port" : "json_9306",
+         "host" : "json_test01",
+         "pass" : "json_password"
+      }
+   },
+   "Project::Registry::Manager::Config::AnnotateXML" : {
+      "dataset" : {
+         "sample" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::SampleInfoAdaptor"
+            ],
+            "xml_key_field" : [
+               "sample_samplehub_sample_id"
+            ]
+         },
+         "data_set" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::DataSetAdaptor"
+            ],
+            "xml_key_field" : [
+               "sample_samplehub_sample_id"
+            ]
+         },
+         "ssv" : {
+            "xml_key_field" : [
+               "vf_seq_region_name",
+               "vf_seq_region_start"
+            ],
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::SampleSpecificVariationAdaptor"
+            ]
+         },
+         "condel" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::CondelAdaptor"
+            ],
+            "xml_key_field" : [
+               "hgvs_genomic",
+               "tr_transcript_stable_id"
+            ]
+         },
+         "xref" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::XrefAdaptor"
+            ],
+            "xml_key_field" : [
+               "vf_seq_region_name",
+               "vf_seq_region_start",
+               "vf_seq_region_end",
+               "allele_string"
+            ]
+         }
+      },
+      "default" : {
+         "key_field_delimiter" : "-"
+      }
+   }
+}
+

@@ -1,12 +1,10 @@
 
 use strict;
-use Project::Pipeline::Config::Manager; 
+use Project::Registry::Manager; 
 
 use Test::More tests => 4; 
 
-my $class = "Project::Pipeline::Config::Manager";  
-
-my $registry = new_ok($class);  
+my $registry = new_ok("Project::Registry::Manager");  
 
 $registry->add_config("test_1" => "test_class_1"); 
 $registry->add_config("test_2" => "test_class_2"); 

@@ -14,11 +14,11 @@ Manager object which knows about the different configurations for different clas
 
   my $config_manager = Project::Pipeline::Config::Manager->new();    
 
-  my $default = Project::Pipeline::Config::DataSet->new();
+  my $default = Project::Pipeline::Config::Dataset->new();
   $default->directory('abc'); 
   $default->filter_threshold('100'); 
 
-  my $data_set = Project::Pipeline::Config::DataSet->new();    
+  my $data_set = Project::Pipeline::Config::Dataset->new();    
   $data_set->directory('abc'), 
   $data_set->filter_threshold('100'); 
   

@@ -14,7 +14,7 @@ otherwise, throw.
 =head1 SYNOPSIS
 
   use Project::Pipeline::GlobalConfig; 
-  my $entry = Project::Pipeline::Config::DataSet::Entry->new();
+  my $entry = Project::Pipeline::Config::Dataset::Entry->new();
  
   $entry->vp_variation_db("abc"); 
   $entry->etl_db_name("etl_db_name");

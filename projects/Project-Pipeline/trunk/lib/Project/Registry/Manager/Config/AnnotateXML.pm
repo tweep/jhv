@@ -27,7 +27,7 @@ throw.
 
 =cut
 
-package Project::Registry::Manager::Config::Database;
+package Project::Registry::Manager::Config::AnnotateXML;
 use Moose;
 use namespace::autoclean;
 use Data::Dumper;
@@ -35,17 +35,13 @@ use Class::MOP::Class;
 
 extends 'Project::Registry::Manager::Config';
 
-with 'Project::Registry::Role::Databases';
-
+with 'Project::Registry::Role::AnnotateXML';
 
 #
 # Set default values which over-rides the defaults from the base class
 #
-sub _build_host    { return 'resio01' }
-sub _build_user    { return 'gneadmin' }
-sub _build_pass    { return 'gne' }
-sub _build_port    { return '9306' }
-sub _build_species { return 'Homo sapiens' }
+
+sub _build_key_field_delimiter { return "-" }
 
 __PACKAGE__->meta->make_immutable;
 

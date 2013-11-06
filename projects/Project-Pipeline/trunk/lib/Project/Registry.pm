@@ -1,6 +1,8 @@
                              
 package Project::Registry;
 
+# ABSTRACT: turns baubles into trinkets
+
 
 =head1 DESCRIPTION
 

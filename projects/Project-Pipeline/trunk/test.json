@@ -1,0 +1,105 @@
+{
+   "Project::Registry::Manager::Config::AnnotateXML" : {
+      "default" : {
+         "key_field_delimiter" : "-"
+      },
+      "dataset" : {
+         "condel" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::CondelAdaptor"
+            ],
+            "xml_key_field" : [
+               "hgvs_genomic",
+               "tr_transcript_stable_id"
+            ]
+         },
+         "sample" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::SampleInfoAdaptor"
+            ],
+            "xml_key_field" : [
+               "sample_samplehub_sample_id"
+            ]
+         },
+         "xref" : {
+            "xml_key_field" : [
+               "vf_seq_region_name",
+               "vf_seq_region_start",
+               "vf_seq_region_end",
+               "allele_string"
+            ],
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::XrefAdaptor"
+            ]
+         },
+         "ssv" : {
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::SampleSpecificVariationAdaptor"
+            ],
+            "xml_key_field" : [
+               "vf_seq_region_name",
+               "vf_seq_region_start"
+            ]
+         },
+         "data_set" : {
+            "xml_key_field" : [
+               "sample_samplehub_sample_id"
+            ],
+            "annotation_module" : [
+               "GNE::VariationPortal::Adaptor::DataSetAdaptor"
+            ]
+         }
+      }
+   },
+   "Project::Registry::Manager::Config::Database" : {
+      "dataset" : {
+         "cgi_wgs" : {
+            "pass" : "SPECIAL_password",
+            "host" : "SPECIAL_test01",
+            "group" : "SPECIAL_group",
+            "dbname" : "SPECIAL_my_db_name",
+            "port" : "SPECIAL_9306",
+            "user" : "SPECIAL_myuser"
+         },
+         "tcga_07" : {
+            "group" : "TCGA_group"
+         }
+      },
+      "default" : {
+         "host" : "json_test01",
+         "user" : "json_myuser",
+         "port" : "json_9306",
+         "pass" : "json_password"
+      }
+   },
+   "Project::Registry::Manager::Config::Dataset" : {
+      "default" : {
+         "base_dir" : "OK_json_base_dir",
+         "ensembl_cvs_root_dir" : "OK_ENS_CVS_"
+      },
+      "dataset" : {
+         "cgp4" : {
+            "merge_set_name" : "cgp",
+            "vp_variation_db" : "vogelj4_evar_2013_09_01_cgp4",
+            "dump_merge_info" : {
+               "upload_to_solr" : 0,
+               "merge_set_name" : "cgp",
+               "dump_to_xml" : 0,
+               "merge_data" : 1,
+               "annotate_xml" : 0
+            },
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp4_etl",
+            "variant_caller" : "gGATK",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_09_01_cgp4/json_strings/json_vcf_file_loc_reformat.txt"
+         },
+         "cgp3" : {
+            "variant_caller" : "gneCaller.1",
+            "etl_db_name" : "vogelj4_evar_2013_09_01_cgp3_etl",
+            "vp_variation_db" : "vogelj4_evar_2013_03_03_cgp3",
+            "merge_set_name" : "cgp",
+            "json_vcf_file" : "/gne/research/workspace/vogelj4/projects/gmvp/import_data_2013_06_24_cgp3/json_strings/json_reformat.txt"
+         }
+      }
+   }
+}
+

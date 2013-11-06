@@ -27,7 +27,7 @@ throw.
 
 =cut
 
-package Project::Registry::Manager::Config::Database;
+package Project::Registry::Manager::Config::General;
 use Moose;
 use namespace::autoclean;
 use Data::Dumper;
@@ -35,17 +35,19 @@ use Class::MOP::Class;
 
 extends 'Project::Registry::Manager::Config';
 
-with 'Project::Registry::Role::Databases';
-
+with 'Project::Registry::Role::General';
 
 #
 # Set default values which over-rides the defaults from the base class
 #
-sub _build_host    { return 'resio01' }
-sub _build_user    { return 'gneadmin' }
-sub _build_pass    { return 'gne' }
-sub _build_port    { return '9306' }
-sub _build_species { return 'Homo sapiens' }
+
+sub _build_samplehub_view_version {
+    return 'SampleHub::DB::Sam_Inventory_v3::Manager';
+}
+
+sub _build_etl_tmp_dir {
+    return '/gne/research/workspace/vogelj4/projects/etl_tmp_dir';
+}
 
 __PACKAGE__->meta->make_immutable;
 
