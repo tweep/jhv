@@ -25,11 +25,11 @@ use Moose;
 with 'Project::Pipeline::Role::Config';
 
 sub _build_vp_variation_db {
-    return "BASE CONFIG VPP INIT VALUE";
+    return "CONFIG_VPP_INIT_VALUE";
 }
 
 sub _build_etl_db_name {
-    return "BASE CONFIG ETL INIT VALUE";
+    return "CONFIG_ETL_INIT_VALUE";
 }
 
 __PACKAGE__->meta->make_immutable;
