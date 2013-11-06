@@ -1,5 +1,3 @@
-                             
-
 
 =head1 DESCRIPTION
 
@@ -29,47 +27,43 @@ throw.
 
 =cut
 
-package Project::Pipeline::Config::Entry;
+package Project::Registry::Manager::Config::Database;
 use Moose;
 use namespace::autoclean;
-use Data::Dumper; 
+use Data::Dumper;
 use Class::MOP::Class;
-extends 'Project::Pipeline::Config';
-with 'Project::Pipeline::Role::Config';
 
-has 'default_class'      => (
-                              is => 'rw' , 
-                              #isa => 'Project::Pipeline::Config' , 
-                              isa => 'Any', 
-                              required => 0,
-                              #trigger => \&set_all_defaults, 
-                            );
+extends 'Project::Registry::Manager::Config';
 
+with 'Project::Registry::Role::Databases';
+
+has 'default_class' => (
+    is       => 'rw',
+    isa      => 'Project::Registry::Manager::Config',    # Base class
+    isa      => 'Any',
+    required => 0,
+    trigger  => \&set_all_defaults,
+);
 
 sub set_all_defaults {
-      my ( $self, $passed_val, $previous_val) = @_;
+    my ( $self, $passed_val, $previous_val ) = @_;
 
-      my $meta = $passed_val->meta();
+    my $meta = $passed_val->meta();
 
-      for my $attr ( $meta->get_all_attributes ) {
+    for my $attr ( $meta->get_all_attributes ) {
         my $attribute_name = $attr->name();
-        print "Entry.pm: Setting defaults: " , $attr->name, " ==> ", $passed_val->$attribute_name, "\n";
-      }
+        print "Entry.pm: Setting defaults: ", $attr->name, " ==> ",
+          $passed_val->$attribute_name, "\n";
+    }
 }
 
+# Supply default values which over-rides the defaults from the base class
+sub _build_host    { return 'resio01' }
+sub _build_user    { return 'gneadmin' }
+sub _build_pass    { return 'gne' }
+sub _build_port    { return '9306' }
+sub _build_species { return 'Homo sapiens' }
 
-# Supply default values which over-rides the defaults from the base class 
-
-sub _build_vp_variation_db {
-    return "ENTRY_VPP_INIT_VALUE";
-}
-
-sub _build_etl_db_name {
-    return "ENTRY_ETL_INIT_VALUE";
-}
-
-
-
-__PACKAGE__->meta->make_immutable; 
+__PACKAGE__->meta->make_immutable;
 
 1;
