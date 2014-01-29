@@ -43,6 +43,43 @@ with 'Project::Registry::Role::AnnotateXML';
 
 sub _build_key_field_delimiter { return "-" }
 
+
+
+
+=head2 create_key()
+
+Arg [1]    : HashRef from XML::Dumper 
+Example    : 
+Description: Creates a key-string and uses the key field delmiter 
+             specified in the configuration file. If no key field delimiter 
+             is specified, it uses the DEFAULT key field delmiter '-'. 
+Returntype : String 
+Exceptions : None 
+
+
+=cut
+
+
+sub create_key { 
+  my ($self, $record) = @_; 
+
+  # Record is a hash who's values are arrays. This is 'cause we might have 
+  # data in the SOLR document which has multiple times the same entry 
+  # and we can't process this with a Hash ( overwrite the same key ... ) 
+  # $record->{sample_id} = ['sam123'] 
+  # $record->{xr_consequence_type} = ['INTRONIC','NON_SYNONYMOUS_CODING'] 
+
+
+  my $aref_key_fields  =  $self->xml_key_field(); 
+  my @key_values = map { ${ $record->{$_}}[0] } @$aref_key_fields; 
+
+  my $separator = $self->key_field_delimiter(); 
+
+  return  join($separator, @key_values); 
+
+}
+
+
 __PACKAGE__->meta->make_immutable;
 
 1;
