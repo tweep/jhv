@@ -13,9 +13,12 @@ has 'key_field_delimiter' => (
     builder  => '_build_key_field_delimiter'
 );
 
+# Below arguments which come from the JSON config file
 has 'xml_key_field'     => ( is => 'rw', isa => 'Maybe[ArrayRef[Str]]', required => 0 );
 has 'annotation_module' => ( is => 'rw', isa => 'Maybe[ArrayRef[Str]]', required => 0 );
+has 'constructor_args'  => ( is => 'rw', isa => 'Any'                 , required => 0 );
 has 'annotation_file'   => ( is => 'rw', isa => 'Maybe[ArrayRef[Str]]', required => 0 );
+
 
 1;
 
