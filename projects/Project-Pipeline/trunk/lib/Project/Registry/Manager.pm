@@ -39,15 +39,15 @@ Arg [2]    : HashRef, Configuration Hash retrieved from different Adaptors / JSO
 
 Example    : Basically this is what's happening in Project::Registry->setup_config():
 
-    my $registry = Project::Registry->new();
+            my $registry = Project::Registry->new();
 
-    for my $module_name ( keys %$config_hash ) {
+            for my $module_name ( keys %$config_hash ) {
 
-        my $config_manager = Project::Registry::Manager->new();  
-        $config_manager->create_config_objects($module_name, $config_hash); 
-        $registry->add_manager( $module_name => $config_manager );
+                my $config_manager = Project::Registry::Manager->new();  
+                $config_manager->create_config_objects($module_name, $config_hash); 
+                $registry->add_manager( $module_name => $config_manager );
 
-    }
+            }
 
 Description: Creates Config objects for each sub-configured entity (data set)
              and registers the objects with the Project::Registry::Manager class.
@@ -72,27 +72,33 @@ sub create_config_objects {
     my $config_section = $config_hash->{$module_name};
 
     load $module_name;    # Module::Load,
-        # load Project::Registry::Manager::Config::Dataset on the fly
+    # load Project::Registry::Manager::Config::Dataset on the fly
 
     my $default_section_config = create_default_config_section_obj($module_name,$config_section);
 
     my %data_sets = %{ $config_section->{dataset} };
 
+
     #
     #  Loop trough all configured sets of a config section
     #
+    if (scalar keys %data_sets > 0 ) { 
+        
+        for my $data_set ( keys %data_sets ) {
+            my $merged_conf = merge_config_sections( $default_section_config,
+                $data_sets{$data_set} );
 
-    for my $data_set ( keys %data_sets ) {
-        my $merged_conf = merge_config_sections( $default_section_config,
-            $data_sets{$data_set} );
+           #
+           # Add the detailed parameters of the config section to the config object:
+           #
 
-       #
-       # Add the detailed parameters of the config section to the config object:
-       #
+            my $config_obj = $module_name->new($merged_conf);    #$data_sets{$data_set});
+            $self->add_config( $data_set => $config_obj );
+        } 
+     }else {  
+            $self->add_config( 'DEFAULT' => $default_section_config ); 
+     }
 
-        my $config_obj = $module_name->new($merged_conf);    #$data_sets{$data_set});
-        $self->add_config( $data_set => $config_obj );
-    }
     return $self;
 }
 
@@ -103,12 +109,23 @@ has 'config' => (
     default => sub { {} },
     handles => {
         add_config    => 'set',
-        get_config    => 'get',
+        get_explicit_config    => 'get',
         get_configs   => 'keys',
         config_exists => 'defined',
         count_configs => 'count',
     },
 );
+
+sub get_config { 
+    my ( $self, $config_name  ) = @_;  
+
+    my $config = $self->get_explicit_config($config_name);  
+
+    if (! defined $config ) { 
+      $config = $self->get_explicit_config("DEFAULT");
+    }  
+    return $config;
+} 
 
 __PACKAGE__->meta->make_immutable;
 
