@@ -26,11 +26,20 @@ use Project::Registry::Manager;
 use Log::Log4perl qw(:easy);
 use Data::Dumper; 
 
+
+
 =head2 setup_config
 
 Arg [1]    : HashReference  
 Example    : my $registry = process_config($hash_ref);  
-Description: An example of the $hash_ref_config looks like this:   
+Description: Values can be passed via a HashReference / JSON file.
+             Default can be hard-coded and set in various sub-classes.
+
+             For example, the DEFAULT database connection details can be hard-coded in 
+
+               Project::Registry::Manager::Config::Database 
+
+An example of the $hash_ref_config looks like this:   
 
 use Project::Registry;
 
@@ -63,8 +72,10 @@ my $js =
 
   my $registry = Project::Registry->new();
   my $registry->setup_config($js); 
+  my $manager = $registry->get_manager("Project::Registry::Manager::Config::Database");  
 
 =cut
+
 
 sub setup_config {
     my ($self, $config_hash) = @_;
@@ -78,6 +89,7 @@ sub setup_config {
     }
     return $self;
 }
+
 
 has 'manager' => (
     traits  => ['Hash'],
